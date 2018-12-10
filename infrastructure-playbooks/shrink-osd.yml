@@ -58,6 +58,9 @@
   roles:
     - ceph-defaults
 
+    - import_role:
+        name: ceph-facts
+
   post_tasks:
 
     - name: set_fact docker_exec_cmd build docker exec command (containerized)
