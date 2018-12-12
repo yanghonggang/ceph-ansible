@@ -481,6 +481,8 @@ def lookup_ceph_initial_entities(module, out):
         fatal("'auth_dump' key not present in json output:", module)  # noqa E501
 
     if len(entities) != len(CEPH_INITIAL_KEYS):
+        with open('/tmp/debug_entities', 'w') as f:
+            f.write("%s\n" % entities)
         return None
 
     return entities
@@ -651,7 +653,8 @@ def run_module():
 
         entities = lookup_ceph_initial_entities(module, out)
         if entities is None:
-            fatal("Failed to find some of the initial entities", module)
+            with open('/tmp/debug_entities', 'r') as f:
+                fatal("Failed to find some of the initial entities:%s" % f.read(), module)
 
         output_format = "plain"
         for entity in entities:
