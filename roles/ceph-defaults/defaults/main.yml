@@ -73,7 +73,7 @@ debian_package_dependencies:
 
 centos_package_dependencies:
   - python-pycurl
-  - epel-release
+  #- epel-release
   - python-setuptools
   - libselinux-python
 
